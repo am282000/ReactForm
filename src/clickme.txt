@@ -1,0 +1,507 @@
+All other things as it is !!!
+
+index.js
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+
+
+ReactDOM.render( <App />,document.getElementById('root'));
+
+
+index .css
+
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  background-color: #d2dbdd;
+}
+
+div{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  background: #8e44ad;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+h1{
+  color:white;
+  background: transparent;
+  text-shadow: 0 2px 2px black;
+}
+button{
+  line-height:24px;
+  padding: 15px 20px;
+  background: #9b59b6;
+  color: white;
+  border: 2px solid #ecf0f1;
+  outline: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+input{
+  width: 50%;
+  padding:10px 20px;
+  border : none ;
+  outline: none;
+  margin: 20px 0;
+  text-align: center;
+}
+
+
+
+app.js 
+
+import React,{useState } from 'react';
+
+const App=()=>{
+  const [count,setCount]=useState(0);
+
+  const IncNum=()=>{
+    setCount(count+1);
+  }
+  return(
+    <>
+      <h1>{count}</h1>
+      <button onClick={IncNum}>Click me</button>
+    </>
+  );
+}
+
+export default App;
+
+
+
+
+
+
+
+
+
+// New project - Get Time
+
+
+just update App.js
+
+
+import React,{useState } from 'react';
+
+const App=()=>{
+  let NewTime = new Date().toLocaleTimeString();
+
+  const [currTime,setCurrTym]=useState(NewTime);
+  
+  const UpdateTime=()=>{
+    NewTime = new Date().toLocaleTimeString();
+    setCurrTym(NewTime);
+  }
+  return(
+    <>
+      <h1>{currTime}</h1>
+      <button onClick={UpdateTime}>Get Time</button>
+    </>
+  );
+}
+
+export default App;
+
+
+
+
+// New project - Auto update Clock
+
+import React,{useState } from 'react';
+
+const App=()=>{
+  let NewTime = new Date().toLocaleTimeString();
+
+  const [currTime,setCurrTym]=useState(NewTime);
+  
+  const UpdateTime=()=>{
+    NewTime = new Date().toLocaleTimeString();
+    setCurrTym(NewTime);
+  }
+
+  setInterval(UpdateTime,1000) 
+
+  return(
+    <>
+      <h1>{currTime}</h1>
+      <button onClick={UpdateTime}>Get Time</button>
+    </>
+  );
+}
+
+export default App;
+
+
+
+//change state - bg , inner text change 
+
+App.js 
+
+import React,{useState} from 'react';
+
+const App=()=>{
+
+  const purple ="#8e44ad";
+  const [bg,setBg] = useState(purple);
+  const [name,setName]=useState("Click me");
+
+  const bgChange=()=>{
+    let newBg="#34495e";
+     setBg(newBg);
+     setName("OOUCH 🥴");
+  }
+
+  
+  const bgBack=()=>{
+    let newBg="yellow";
+     setBg(newBg);
+     setName("Ayyo 😠");
+  }
+  return(
+    <>
+    <div style ={{backgroundColor: bg }}>
+      <button onMouseEnter={bgChange} onMouseLeave={bgBack} >{name} </button>
+    </div>
+    </>
+  );
+}
+
+export default App;
+
+
+
+// Demo project 
+
+App.js
+
+import React,{useState } from 'react';
+
+const App=()=>{
+  const purple ="cyan";
+  const orange ="orange";
+
+  const [count,setCount]=useState(143);
+  const [name,setName]=useState("Click me");
+  const [bg,setBg]=useState(purple);
+  const [btnBg,setBtnBg]=useState(orange);
+
+
+  const IncNum=()=>{
+    setCount("I Love you");
+    setName("Panda");
+    const newBg ="#028A0F";
+    setBg(newBg);
+    const newBtnBg="red";
+    setBtnBg(newBtnBg);
+  }
+
+  return(
+    <>
+      <div style={{backgroundColor:bg}}>
+      <h1>{count}</h1>
+      <button onClick={IncNum} style={{background:btnBg}} >{name}</button>
+      </div>
+    </>
+  );
+}
+
+export default App;
+
+
+
+
+// Forms - get get in input and show it on screen
+
+App.jsx
+
+import React,{useState} from 'react';
+
+const App=()=>{
+
+  const [name,setName]=useState();
+  const [fullName,setFullName]=useState();
+
+  const inputEvent=(event)=>{
+    console.log(event.target.value);
+    setName(event.target.value);
+  };
+
+  const onSubmit=()=>{
+    setFullName(name);
+  }
+
+  return(
+    <>
+      <div>
+        <h1>hello {fullName} </h1>
+        <input type="text" placeholder="Enter Your Name" onChange={inputEvent} value={name}/>
+        <button onClick={onSubmit} >Click Me 🤩 </button>
+      </div>
+    </>
+  );
+}
+
+export default App;
+
+
+
+
+
+// Form with first and last name
+
+App.jsx
+
+import React,{useState} from 'react';
+
+const App=()=>{
+
+  const [name,setName]=useState("");
+  const [lastName,setLastName]=useState("");
+  const [fullName,setFullName]=useState("");
+  const [displayLastName,setDisplayLastName]=useState("");
+
+  const inputEvent=(event)=>{
+    console.log(event.target.value);
+    setName(event.target.value);
+  };
+
+  const inputEventTwo=(event)=>{
+      setLastName(event.target.value);
+  }
+
+  const onSubmit=(event)=>{
+    event.preventDefault();
+    setFullName(name);
+    setDisplayLastName(lastName);
+  }
+
+  return(
+    <>
+    <div className="main_div">
+      <form onSubmit={onSubmit}>
+        <div>
+          <h1>Hello {fullName} {displayLastName} </h1>
+          <input type="text" placeholder="Enter Your First Name" onChange={inputEvent} value={name}/>
+          <input type="text" placeholder="Enter Your Last Name" onChange={inputEventTwo} value={lastName}/>
+          <button type="submit" >Click Me 🤩 </button>
+        </div>
+      </form>
+    </div>    
+    </>
+  );
+}
+
+export default App;
+
+
+// Form with two input fiends 
+
+
+App.jsx
+
+import React,{useState} from 'react';
+
+const App=()=>{
+
+  const [name,setName]=useState("");
+  const [lastName,setLastName]=useState("");
+  const [fullName,setFullName]=useState("");
+  const [displayLastName,setDisplayLastName]=useState("");
+
+  const inputEvent=(event)=>{
+    console.log(event.target.value);
+    setName(event.target.value);
+  };
+
+  const inputEventTwo=(event)=>{
+      setLastName(event.target.value);
+  }
+
+  const onSubmit=(event)=>{
+    event.preventDefault();
+    setFullName(name);
+    setDisplayLastName(lastName);
+  }
+
+  return(
+    <>
+    <div className="main_div">
+      <form onSubmit={onSubmit}>
+        <div>
+          <h1>Hello {fullName} {displayLastName} </h1>
+          <input type="text" placeholder="Enter Your First Name" onChange={inputEvent} value={name}/>
+          <input type="text" placeholder="Enter Your Last Name" onChange={inputEventTwo} value={lastName}/>
+          <button type="submit" >Click Me 🤩 </button>
+        </div>
+      </form>
+    </div>    
+    </>
+  );
+}
+
+export default App;
+
+
+
+// Form with 4 fields 
+
+App.jsx
+
+import React,{useState} from 'react';
+
+const App=()=>{
+
+  const [fullName,setFullName]=useState( {
+    fname:'',
+    lname:'',
+    email:'',
+    phone:'',
+  });
+ 
+
+  const inputEvent=(event)=>{
+    console.log(event.target.value);
+    console.log(event.target.name);
+    // console.log(event.target.placeholder);
+    
+    const {value,name}=event.target;
+
+    setFullName((preValue)=>{
+        // console.log(preValue);
+        if(name=== 'fName'){
+          return{
+            fname:value,
+            lname:preValue.lname,
+            email:preValue.email,
+            phone:preValue.phone,
+          };
+        } else if(name=== 'lName'){
+          return{
+            fname:preValue.fname,
+            lname:value,
+            email:preValue.email,
+            phone:preValue.phone,
+          };
+        } else if(name=== 'email'){
+          return{
+            fname:preValue.fname,
+            lname:preValue.lname,
+            email:value,
+            phone:preValue.phone,
+          };
+        } else if(name=== 'phone'){
+          return{
+            fname:preValue.fname,
+            lname:preValue.lname,
+            email:preValue.email,
+            phone:value,
+          };
+        }
+    })
+  };
+
+  const onSubmit=(event)=>{
+    event.preventDefault();
+    alert("Form Submitted");
+  }
+
+  return(
+    <>
+    <div className="main_div">
+      <form onSubmit={onSubmit}>
+        <div>
+          <h1>Hello {fullName.fname} {fullName.lname}</h1>
+          <p>{fullName.email}</p>
+          <p>{fullName.phone}</p>
+          <input type="text" placeholder="Enter Your First Name" name='fName' 
+              onChange={inputEvent} value={fullName.fname} autoComplete="off"/>
+          <input type="text" placeholder="Enter Your Last Name" name='lName' 
+              onChange={inputEvent} value={fullName.lname} autoComplete="off"/>
+           <input type="email" placeholder="Enter Your Email" name='email' 
+              onChange={inputEvent} value={fullName.email} autoComplete="off"/>
+            <input type="number" placeholder="Enter Your Phone No " name='phone' 
+              onChange={inputEvent} value={fullName.phone} autoComplete="off"/>
+          <button type="submit" >Click Me 🤩 </button>
+        </div>
+      </form>
+    </div>    
+    </>
+  );
+}
+
+export default App;
+
+
+
+// Best simple form 
+
+App.jsx
+
+import React,{useState} from 'react';
+
+const App=()=>{
+
+  const [fullName,setFullName]=useState( {
+    fname:'',
+    lname:'',
+    email:'',
+    phone:'',
+  });
+ 
+
+  const inputEvent=(event)=>{
+    console.log(event.target.value);
+    console.log(event.target.name);
+    // console.log(event.target.placeholder);
+    
+    const {value,name}=event.target;
+
+    setFullName((preValue)=>{
+        // console.log(preValue);
+        return{
+          ...preValue,
+          [name]:value,
+        };
+    })
+  };
+
+  const onSubmit=(event)=>{
+    event.preventDefault();
+    alert("Form Submitted");
+  }
+
+  return(
+    <>
+    <div className="main_div">
+      <form onSubmit={onSubmit}>
+        <div>
+          <h1>Hello {fullName.fname} {fullName.lname}</h1>
+          <p>{fullName.email}</p>
+          <p>{fullName.phone}</p>
+          <input type="text" placeholder="Enter Your First Name" name='fname' 
+              onChange={inputEvent} value={fullName.fname} autoComplete="off"/>
+          <input type="text" placeholder="Enter Your Last Name" name='lname' 
+              onChange={inputEvent} value={fullName.lname} autoComplete="off"/>
+           <input type="email" placeholder="Enter Your Email" name='email' 
+              onChange={inputEvent} value={fullName.email} autoComplete="off"/>
+            <input type="number" placeholder="Enter Your Phone No " name='phone' 
+              onChange={inputEvent} value={fullName.phone} autoComplete="off"/>
+          <button type="submit" >Click Me 🤩 </button>
+        </div>
+      </form>
+    </div>    
+    </>
+  );
+}
+
+export default App;
